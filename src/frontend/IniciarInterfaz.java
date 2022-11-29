@@ -70,5 +70,5 @@ public class IniciarInterfaz extends JFrame {
 		contentPane.add(btnIniciarSesion);
 		contentPane.add(btnCatalogo);
 	}
-
+	
 }

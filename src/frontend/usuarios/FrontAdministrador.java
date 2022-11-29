@@ -17,6 +17,7 @@ public class FrontAdministrador extends JFrame {
 	private JButton btnCatalogo;
 	private JButton btnClientes;
 	private JButton btnUsuarios;
+	private JButton btnProvedores;
 
 	public FrontAdministrador() {
 		setTitle("BIENVENIDO ADMINISTRADOR");
@@ -32,11 +33,14 @@ public class FrontAdministrador extends JFrame {
 		btnCatalogo = new JButton("Ver Cat\u00E1logo");
 		btnUsuarios = new JButton("Usuarios");
 		btnClientes = new JButton("Clientes");
+		btnProvedores = new JButton("Provedores");
 		
 		//Se configura la apariencia de los botones
 		btnCatalogo.setBounds(10, 11, 150, 50);
 		btnUsuarios.setBounds(10, 77, 150, 50);
 		btnClientes.setBounds(203, 11, 150, 50);
+		btnProvedores.setBounds(203, 77, 150, 50);
+		
 		
 		/**************************CONFIGURACION DE BOTONES***********************************/
 		
@@ -67,6 +71,11 @@ public class FrontAdministrador extends JFrame {
 			}
 		});
 		
+		//BOTON PROVEDORES
+		btnProvedores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		
 		/*************************************************************/
 		
@@ -74,7 +83,8 @@ public class FrontAdministrador extends JFrame {
 		contentPane.add(btnCatalogo);
 		contentPane.add(btnUsuarios);
 		contentPane.add(btnClientes);
+		contentPane.add(btnProvedores);
+		
 
 	}
-
 }
