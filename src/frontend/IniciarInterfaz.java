@@ -40,7 +40,7 @@ public class IniciarInterfaz extends JFrame {
 		//Se crean las instancias de los atributos y algunos los inicializamos
 		iniciarSesion = new IniciarSesion(this);
 		btnIniciarSesion = new JButton("<html>Iniciar Sesi\u00F3n</html>");
-		btnCatalogo = new JButton("<html>Mostrar Cat\u00E1logo</html>");
+		btnCatalogo = new JButton("<html>Inventario</html>");
 		
 		//Configuramos los botones
 		btnIniciarSesion.setBounds(10, 30, 180, 65);
