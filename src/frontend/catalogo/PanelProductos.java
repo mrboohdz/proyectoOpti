@@ -68,7 +68,7 @@ public class PanelProductos extends JPanel {
 		txtBuscarNombre = new JTextField();
 		txtBuscarId = new JTextField();
 		
-		btnCotizacion = new JButton("Crear Cotización");
+		btnCotizacion = new JButton("Crear Cotizaciï¿½n");
 		
 
 		//Configuramos cada etiqueta, cuadros de texto y botones
@@ -127,7 +127,7 @@ public class PanelProductos extends JPanel {
 				else {
 					ArrayList<Articulo> temp = cat.BuscarArticulo(nombre);
 					if(temp == null)
-						JOptionPane.showMessageDialog(null, "Artículo no encontrado");
+						JOptionPane.showMessageDialog(null, "Artï¿½culo no encontrado");
 					else
 						CrearTabla(temp);
 				}
@@ -218,7 +218,7 @@ public class PanelProductos extends JPanel {
 		txtBuscarNombre = new JTextField();
 		txtBuscarId = new JTextField();
 		
-		btnCotizacion = new JButton("Crear Cotización");
+		btnCotizacion = new JButton("Crear Cotizaciï¿½n");
 
 		//Configuramos cada etiqueta, cuadros de texto y botones
 		
@@ -343,7 +343,7 @@ public class PanelProductos extends JPanel {
 		txtBuscarNombre = new JTextField();
 		txtBuscarId = new JTextField();
 		
-		btnCotizacion = new JButton("Crear Cotización");
+		btnCotizacion = new JButton("Crear Cotizaciï¿½n");
 
 		//Configuramos cada etiqueta, cuadros de texto y botones
 		

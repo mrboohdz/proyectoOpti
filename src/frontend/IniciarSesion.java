@@ -67,7 +67,7 @@ public class IniciarSesion extends JFrame {
 				
 				//Vamos a verificar si las cajas no estan vacias, si lo estan se marca error
 				if("".equals(usuario) || "".equals(contrasenia))
-					JOptionPane.showMessageDialog(null, "Campo vacío");
+					JOptionPane.showMessageDialog(null, "Campo vacï¿½o");
 				else {
 					//Si las cajas no estan vacias, se van a validar los datos en la clase de la lista de usuarios
 					listaUsuarios = new ListaUsuarios();
@@ -77,7 +77,7 @@ public class IniciarSesion extends JFrame {
 					//por lo que depende del numero, es la interfaz que vamos a correr, o bien, el dialogo de no poder iniciar sesion
 					
 					if(temp == 0)
-						JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrectos");
+						JOptionPane.showMessageDialog(null, "Usuario o Contraseï¿½a incorrectos");
 					else {
 						if(temp==1) {
 							FrontUsuario frontUsuario = new FrontUsuario();
