@@ -20,7 +20,7 @@ public class baseDatos {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(this.URL, this.USERNAME, this.PASSWORD);
-			//System.out.println("Conexiï¿½n Exitosa");
+			//System.out.println("Conexión Exitosa");
 		}
 		catch(SQLException|ClassNotFoundException e) {
 			System.out.println(e);
