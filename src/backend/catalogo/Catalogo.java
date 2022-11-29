@@ -18,11 +18,13 @@ public class Catalogo  {
 	
 	public Catalogo(){
 		try {
-			//Accedemos a la base de datos para crear la lista de artículos
+			//Accedemos a la base de datos para crear la lista de artï¿½culos
 			articulos = new ArrayList<Articulo>();  
 			
+			//Agregar esta consulta para mostrar en la tabla
+			//SELECT articulo.id, articulo.nombre, proveedores.nombre, precio, stock FROM articulo LEFT JOIN proveedores ON articulo.idProveedor = proveedores.id 
 			//Con este String indicamos la busqueda en la base
-			String SQL = "SELECT id, nombre, precio, stock FROM articulo";
+			String SQL = "SELECT articulo.id, articulo.nombre, proveedores.nombre, precio, stock FROM articulo LEFT JOIN proveedores ON articulo.idProveedor = proveedores.id";
 			
 			//Se preparan los datos y se ejecuta la busqueda
 			ps = con.prepareStatement(SQL);
@@ -34,8 +36,9 @@ public class Catalogo  {
 				
 				art.setId(rs.getInt(1));
 				art.setNombre(rs.getString(2));
-				art.setPrecio(rs.getFloat(3));
-				art.setStock(rs.getInt(4));
+				art.setProveedor(rs.getString(3));
+				art.setPrecio(rs.getFloat(4));
+				art.setStock(rs.getInt(5));
 				
 				articulos.add(art);
 			}
@@ -103,7 +106,7 @@ public class Catalogo  {
 		String SQL = "DELETE FROM articulo WHERE id = '"+id+"'";
 		try {
 			ps = con.prepareStatement(SQL);
-			//Si todo sale bien, nos regresa un entero, se usará para 
+			//Si todo sale bien, nos regresa un entero, se usarï¿½ para 
 			//confirmar al usuario que fue eliminado
 			int res = ps.executeUpdate();
 			
@@ -128,7 +131,7 @@ public class Catalogo  {
 			ps.setInt(3, art.getStock());
 			ps.setInt(4, art.getId());
 			
-			//Si todo sale bien, nos regresa un entero, se usará para 
+			//Si todo sale bien, nos regresa un entero, se usarï¿½ para 
 			//confirmar al usuario que fue eliminado
 			int res = ps.executeUpdate();
 			

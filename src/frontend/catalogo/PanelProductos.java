@@ -446,19 +446,19 @@ public class PanelProductos extends JPanel {
 				new Object[][] {
 				},
 				new String[] {
-					"ID", "Nombre", "Precio", "Stock"}
+					"ID", "Nombre", "Proveedor", "Precio", "Stock"}
 			){
 				private static final long serialVersionUID = 1L;
 				@SuppressWarnings("rawtypes")
 				Class[] columnTypes = new Class[] {
-						Integer.class, String.class, Float.class, Integer.class
+						Integer.class, String.class, String.class, Float.class, Integer.class
 					};
 					@SuppressWarnings({ "rawtypes", "unchecked" })
 					public Class getColumnClass(int columnIndex) {
 						return columnTypes[columnIndex];
 					}
 					boolean[] columnEditables = new boolean[] {
-						false, false, false, false
+						false, false, false, false, false
 					};
 					public boolean isCellEditable(int row, int column) {
 						return columnEditables[column];
@@ -470,8 +470,9 @@ public class PanelProductos extends JPanel {
 				Object[] fil = new Object[4];
 						fil[0]=temp.getId();
 						fil[1]=temp.getNombre();
-						fil[2]=temp.getPrecio();
-						fil[3]=temp.getStock();
+						fil[2]=temp.getProveedor();
+						fil[3]=temp.getPrecio();
+						fil[4]=temp.getStock();
 						modelo.addRow(fil);
 			}		
 			

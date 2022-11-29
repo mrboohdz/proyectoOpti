@@ -9,6 +9,7 @@ public class Articulo {
 	private int stock;
 	private int cantidad;
 	private float total;
+	private String proveedor;
 	
 	public Articulo() {
 		
@@ -57,6 +58,15 @@ public class Articulo {
 
 	public void setTotal(float total) {
 		this.total = total;
+	}
+
+	public String getProveedor() {
+		// TODO Auto-generated method stub
+		return proveedor;
+	}
+	
+	public void setProveedor(String proveedor) {
+		this.proveedor = proveedor;
 	}
 	
 	

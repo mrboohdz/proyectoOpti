@@ -60,7 +60,7 @@ public class Cotizaciones extends JFrame {
 		btnSiguiente = new JButton("Siguiente");
 		
 		
-		//Configurar como se ve cada uno de estos atributos, además de establecer su lugar
+		//Configurar como se ve cada uno de estos atributos, ademï¿½s de establecer su lugar
 		jtArticulos.setLocation(628, 29);
 		jtArticulos.setSize(350, 244);
 		
@@ -150,7 +150,7 @@ public class Cotizaciones extends JFrame {
 		//Se envia a cotizacion para eliminarlo
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int input = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este articulo?");
+				int input = JOptionPane.showConfirmDialog(null, "ï¿½Desea eliminar este articulo?");
 				
 				if(input == 0) {
 					cot.EliminarArticulo(fila);
