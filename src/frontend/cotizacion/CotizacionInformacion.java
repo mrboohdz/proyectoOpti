@@ -6,7 +6,7 @@ import javax.swing.border.EmptyBorder;
 
 import backend.cotizacion.Cotizacion;
 import backend.cotizacion.ListaCotizaciones;
-import backend.cotizacion.Persona;
+import backend.cotizacion.Cliente;
 import backend.cotizacion.TipoPersona;
 
 import java.awt.event.ActionListener;
@@ -47,6 +47,10 @@ public class CotizacionInformacion extends JFrame {
 	private ListaCotizaciones listCot;
 	@SuppressWarnings("unused")
 	private Cotizaciones cotFront;
+	private JLabel lblCompletar;
+	private JButton btnCompletar;
+	private JButton btnNoCompletar;
+	private JTextField txtCompletar;
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public CotizacionInformacion() {
@@ -55,7 +59,7 @@ public class CotizacionInformacion extends JFrame {
 		listCot = new ListaCotizaciones();
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 418);
+		setBounds(100, 100, 450, 530);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -93,47 +97,63 @@ public class CotizacionInformacion extends JFrame {
 		//Los personalizamos con la vista que tendran
 		lblInformacion.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInformacion.setBounds(10, 11, 414, 23);
-		lblTelefono.setBounds(10, 162, 80, 14);
-		lblNombre.setBounds(10, 62, 80, 14);
-		lblRFC.setBounds(10, 112, 80, 14);
-		lblPersona.setBounds(10, 87, 80, 14);
-		lblEmail.setBounds(10, 137, 46, 14);
-		lblDireccion.setBounds(10, 187, 80, 14);
-		lblFechaEmision.setBounds(10, 271, 80, 14);
-		lblVencimiento.setBounds(248, 274, 80, 14);
-		txtNombre.setBounds(100, 59, 324, 20);
+		lblTelefono.setBounds(10, 276, 80, 14);
+		lblCompletar = new JLabel("Si el cliente ya ha venido, ingresa el número de celular:");
+		lblCompletar.setBounds(10, 45, 414, 14);
+		lblNombre.setBounds(10, 176, 80, 14);
+		lblRFC.setBounds(10, 226, 80, 14);
+		lblPersona.setBounds(10, 201, 80, 14);
+		lblEmail.setBounds(10, 251, 46, 14);
+		lblDireccion.setBounds(10, 301, 80, 14);
+		lblFechaEmision.setBounds(10, 385, 80, 14);
+		lblVencimiento.setBounds(248, 388, 80, 14);
+		txtNombre.setBounds(100, 173, 324, 20);
 		txtNombre.setColumns(10);
-		txtRFC.setBounds(100, 109, 324, 20);
+		txtRFC.setBounds(100, 223, 324, 20);
 		txtRFC.setColumns(10);
-		txtEmail.setBounds(100, 134, 324, 20);
+		txtEmail.setBounds(100, 248, 324, 20);
 		txtEmail.setColumns(10);
-		txtTelefono.setBounds(100, 159, 324, 20);
+		txtTelefono.setBounds(100, 273, 324, 20);
 		txtTelefono.setColumns(10);
-		txtDireccion.setBounds(100, 184, 324, 20);
+		txtDireccion.setBounds(100, 298, 324, 20);
 		txtDireccion.setColumns(10);
 		txtEmision.setEditable(false);
-		txtEmision.setBounds(100, 268, 86, 20);
+		txtEmision.setBounds(100, 382, 86, 20);
 		txtEmision.setColumns(10);
 		txtEmision.setText(cot.FechaHoy());
 		txtVencimiento.setEditable(false);
 		txtVencimiento.setColumns(10);
-		txtVencimiento.setBounds(338, 271, 86, 20);
+		txtVencimiento.setBounds(338, 385, 86, 20);
 		txtVencimiento.setText(cot.FechaVenc());
-		lblEmpresa.setBounds(10, 215, 80, 14);
+		lblEmpresa.setBounds(10, 329, 80, 14);
 		txtEmpresa.setToolTipText("OPCIONAL");
 		txtEmpresa.setColumns(10);
-		txtEmpresa.setBounds(100, 212, 324, 20);
-		lblRazonSocial.setBounds(10, 243, 80, 14);
+		txtEmpresa.setBounds(100, 326, 324, 20);
+		lblRazonSocial.setBounds(10, 357, 80, 14);
 		txtRazonSocial.setToolTipText("OPCIONAL");
 		txtRazonSocial.setColumns(10);
-		txtRazonSocial.setBounds(100, 240, 324, 20);
-		lblTotal.setBounds(100, 309, 46, 14);
+		txtRazonSocial.setBounds(100, 354, 324, 20);
+		lblTotal.setBounds(100, 423, 46, 14);
 		txtTotal.setEditable(false);
 		txtTotal.setColumns(10);
-		txtTotal.setBounds(156, 306, 86, 20);
+		txtTotal.setBounds(156, 420, 86, 20);
 		cbTipoPersona.setModel(new DefaultComboBoxModel(TipoPersona.values()));
-		cbTipoPersona.setBounds(100, 83, 142, 22);
-		btnAceptar.setBounds(338, 345, 86, 23);
+		cbTipoPersona.setBounds(100, 197, 142, 22);
+		btnAceptar.setBounds(338, 459, 86, 23);
+		txtCompletar = new JTextField();
+		txtCompletar.setBounds(10, 70, 414, 20);
+		contentPane.add(txtCompletar);
+		txtCompletar.setColumns(10);
+		
+		btnCompletar = new JButton("Aceptar");
+		btnCompletar.setBounds(10, 101, 89, 23);
+		contentPane.add(btnCompletar);
+		
+		btnNoCompletar = new JButton("No tiene cuenta");
+		btnNoCompletar.setBounds(261, 101, 163, 23);
+		contentPane.add(btnNoCompletar);
+		
+		
 		
 		/***************************BOTONES**************************************/
 		
@@ -164,21 +184,21 @@ public class CotizacionInformacion extends JFrame {
 					//Pero si los datos, que es lo que se usa normalmente en campo
 					
 					cot = new Cotizacion();
-					cot.setTipoPersona(TipoPersona.valueOf(tipoPersona));
+					//cot.setTipoPersona(TipoPersona.valueOf(tipoPersona));
 					cot.setTotal(Float.parseFloat(total));
 					cot.setFechaEmision(emision);
 					cot.setFechaVencimiento(vencimiento);
 					
-					Persona persona	= new Persona();
+					Cliente persona	= new Cliente();
 					persona.setNombre(nombre);
-					persona.setEmail(email);
+					//persona.setEmail(email);
 					persona.setDireccion(direccion);
 					persona.setNoTelefono(telefono);
 					persona.setRfc(rfc);
 					
 					cot.setResponsable(persona);
-					cot.setEmpresa(empresa);
-					cot.setRazonSocial(razonS);		
+					//cot.setEmpresa(empresa);
+					//cot.setRazonSocial(razonS);		
 					
 					//Se envia a la clase que lo guardara en la base de datos
 					//La lista de cotizaciones solamente sera visible para los usuarios
@@ -217,6 +237,7 @@ public class CotizacionInformacion extends JFrame {
 		contentPane.add(txtTotal);
 		contentPane.add(cbTipoPersona);
 		contentPane.add(btnAceptar);
+		contentPane.add(lblCompletar);
 
 	}
 	

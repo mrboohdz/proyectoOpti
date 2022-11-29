@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 import backend.cotizacion.Cotizacion;
 import backend.cotizacion.ListaCotizaciones;
-import backend.cotizacion.Persona;
+import backend.cotizacion.Cliente;
 
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -121,13 +121,13 @@ public class Clientes extends JFrame {
 				String id = table.getValueAt(fila, 0).toString();
 				
 				Cotizacion cot = listaCotizaciones.CrearInformacion(id);
-				Persona res = cot.getResponsable();
+				Cliente res = cot.getResponsable();
 				
 				txtResponsable.setText(res.getNombre());
-				txtTipoPersona.setText(cot.getTipoPersona().toString());
+				//txtTipoPersona.setText(cot.getTipoPersona().toString());
 				txtRFC.setText(res.getRfc());
 				txtTelefono.setText(res.getNoTelefono());
-				txtEmpresa.setText(cot.getEmpresa());
+				//txtEmpresa.setText(cot.getEmpresa());
 				txtDireccion.setText(res.getDireccion());
 				
 				
@@ -175,7 +175,7 @@ public class Clientes extends JFrame {
 				new Object[][] {
 				},
 				new String[] {
-					"ID", "Responsable", "Persona","Teléfono", "Dirección" }
+					"ID", "Responsable", "Persona","Telï¿½fono", "Direcciï¿½n" }
 			){
 				private static final long serialVersionUID = 1L;
 				@SuppressWarnings("rawtypes")
@@ -199,7 +199,7 @@ public class Clientes extends JFrame {
 				Object[] fil = new Object[5];
 						fil[0]=temp.getIdCotizacion();
 						fil[1]=temp.getResponsable().getNombre();
-						fil[2]=temp.getTipoPersona().toString();
+						//fil[2]=temp.getTipoPersona().toString();
 						fil[3]=temp.getResponsable().getNoTelefono();
 						fil[4]=temp.getResponsable().getDireccion();
 						

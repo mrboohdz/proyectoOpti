@@ -10,14 +10,16 @@ import backend.conexion.baseDatos;
 public class Catalogo  {
 	private ResultSet rs = null; 
 	private PreparedStatement ps = null;
-	private static baseDatos bd = new baseDatos();
-	private static final Connection con = bd.getConexion();
+	private baseDatos bd = null;
+	private Connection con = null;
 	
 	private ArrayList<Articulo> articulos;
 	private Articulo art;
 	
 	public Catalogo(){
 		try {
+			bd = new baseDatos();
+			con = bd.getConexion();
 			//Accedemos a la base de datos para crear la lista de art�culos
 			articulos = new ArrayList<Articulo>();  
 			
@@ -78,6 +80,8 @@ public class Catalogo  {
 	} 
 	
 	public void AgregarArticulo(Articulo art) {
+		bd = new baseDatos();
+		con = bd.getConexion();
 		//Para agregar a la base de datos primero preparamos el String que se enviara
 		String SQL = "INSERT INTO articulo(nombre, precio, stock) VALUES (?,?,?)";
 		try {
@@ -102,6 +106,8 @@ public class Catalogo  {
 	}
 	
 	public void EliminarArticulo(String id) {
+		bd = new baseDatos();
+		con = bd.getConexion();
 		//Se prepara el String para la base de datos
 		String SQL = "DELETE FROM articulo WHERE id = '"+id+"'";
 		try {
@@ -121,6 +127,8 @@ public class Catalogo  {
 	}
 	
 	public void ModificarArticulo(Articulo art) {
+		bd = new baseDatos();
+		con = bd.getConexion();
 		//Se prepara el String para la base de datos sin los valores
 		String SQL = "UPDATE articulo SET nombre=?,precio=?,stock=? WHERE id=?";
 		try {

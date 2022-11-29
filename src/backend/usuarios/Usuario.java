@@ -1,11 +1,11 @@
 package backend.usuarios;
 
-import backend.cotizacion.Persona;
+import backend.cotizacion.Cliente;
 
 public class Usuario {
 	private String usuario;
 	private String contrasenia;
-	private Persona nombre;
+	private Cliente nombre;
 	private TipoUsuario tipoUsuario;
 	private int id;
 	
@@ -22,10 +22,10 @@ public class Usuario {
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
 	}
-	public Persona getNombre() {
+	public Cliente getNombre() {
 		return nombre;
 	}
-	public void setNombre(Persona nombre) {
+	public void setNombre(Cliente nombre) {
 		this.nombre = nombre;
 	}
 	public TipoUsuario getTipoUsuario() {

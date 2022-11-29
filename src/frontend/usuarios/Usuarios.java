@@ -13,7 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import backend.cotizacion.Persona;
+import backend.cotizacion.Cliente;
 import backend.usuarios.*;
 import backend.usuarios.TipoUsuario;
 import backend.usuarios.Usuario;
@@ -206,7 +206,7 @@ public class Usuarios extends JFrame {
 		//todo gracias a los metodos de lista usuarios
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int temp = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el usuario "+txtNombre.getText()+"?");
+				int temp = JOptionPane.showConfirmDialog(null, "ï¿½Desea eliminar el usuario "+txtNombre.getText()+"?");
 				
 				if(temp == 0)
 					listaUsuarios.EliminarUsuario(txtID.getText());
@@ -225,7 +225,7 @@ public class Usuarios extends JFrame {
 				
 				//Se valida que hayan datos en las cajas de texto
 				if("".equals(uno) || "".equals(dos)) 
-					JOptionPane.showMessageDialog(null, "Campos vacíos");
+					JOptionPane.showMessageDialog(null, "Campos vacï¿½os");
 				else 
 					//Despues se valida si las contrasenas son iguales en los campos de validacion
 					
@@ -236,7 +236,7 @@ public class Usuarios extends JFrame {
 						Limpiar();
 					}
 					else
-						JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+						JOptionPane.showMessageDialog(null, "Las contraseï¿½as no coinciden");
 			}
 		});
 		
@@ -247,7 +247,7 @@ public class Usuarios extends JFrame {
 				String id = txtID.getText();
 				//Cuando se desea modificar un usuario, se debe primero saber si el campo esta vacio
 				if("".equals(usuario))
-					JOptionPane.showMessageDialog(null, "Campo vacío");
+					JOptionPane.showMessageDialog(null, "Campo vacï¿½o");
 				else {
 					//En casi de que el usuario ya exista, se nos presenta un dialogo avisandolo
 					boolean ban = listaUsuarios.Confirmar(usuario);
@@ -271,7 +271,7 @@ public class Usuarios extends JFrame {
 				String id = txtID.getText();
 				
 				if("".equals(nombre))
-					JOptionPane.showMessageDialog(null, "Campo vacío");
+					JOptionPane.showMessageDialog(null, "Campo vacï¿½o");
 				else {
 					listaUsuarios.ModificarNombre(nombre, id);
 					Actualizar();
@@ -306,7 +306,7 @@ public class Usuarios extends JFrame {
 				
 				//Lo primero que vamos a hacer es validar que todos los campos hayan sido llenados
 				if("".equals(usuario) || "".equals(nombre) || "".equals(uno) || "".equals(dos))
-					JOptionPane.showMessageDialog(null, "Campos Vacíos");
+					JOptionPane.showMessageDialog(null, "Campos Vacï¿½os");
 				else {
 					//Despues que la contrasena se haya escrito correctamente en ambos campos
 					if(uno.equals(dos)) {
@@ -318,14 +318,14 @@ public class Usuarios extends JFrame {
 							//Si todo es correcto, creamos un nuevo usuario que mandaremos a nuestra lista
 							//para agregarlo
 							Usuario nvo = new Usuario();
-							Persona temp = new Persona();
+							Cliente temp = new Cliente();
 							temp.setNombre(nombre);
 							nvo.setNombre(temp);
 							nvo.setContrasenia(uno);
 							nvo.setUsuario(usuario);
 							nvo.setTipoUsuario(TipoUsuario.valueOf(priv));
 							
-							int pera = JOptionPane.showConfirmDialog(null, "¿Desea agregar el usuario "+usuario+"?");
+							int pera = JOptionPane.showConfirmDialog(null, "ï¿½Desea agregar el usuario "+usuario+"?");
 							if(pera == 0) 
 								listaUsuarios.AgregarUsuario(nvo);
 							
@@ -334,7 +334,7 @@ public class Usuarios extends JFrame {
 						}
 							
 					}else {
-						JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+						JOptionPane.showMessageDialog(null, "Las contraseï¿½as no coinciden");
 					}
 				}
 			}
@@ -347,7 +347,7 @@ public class Usuarios extends JFrame {
 				String id = txtBuscarId.getText();
 				
 				if("".equals(id))
-					JOptionPane.showMessageDialog(null, "Campo Vacío");
+					JOptionPane.showMessageDialog(null, "Campo Vacï¿½o");
 				else
 					CrearTabla(listaUsuarios.BuscarID(id));
 			}
@@ -360,7 +360,7 @@ public class Usuarios extends JFrame {
 				String user = txtBuscarUsuario.getText();
 				
 				if("".equals(user))
-					JOptionPane.showMessageDialog(null, "Campo Vacío");
+					JOptionPane.showMessageDialog(null, "Campo Vacï¿½o");
 				else
 					CrearTabla(listaUsuarios.BuscarUsuario(user));
 			}

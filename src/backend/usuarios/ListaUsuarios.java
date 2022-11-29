@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import backend.conexion.baseDatos;
-import backend.cotizacion.Persona;
+import backend.cotizacion.Cliente;
 
 public class ListaUsuarios {
 	private ResultSet rs = null; 
@@ -34,7 +34,7 @@ public class ListaUsuarios {
 			//Llenamos la lista de usuarios
 			while(rs.next()) {
 				Usuario temp = new Usuario();
-				Persona pers = new Persona();
+				Cliente pers = new Cliente();
 				
 				temp.setId((rs.getInt("idusuario")));
 				temp.setUsuario(rs.getString("usuario"));
@@ -107,7 +107,7 @@ public class ListaUsuarios {
 			
 			int res = ps.executeUpdate();
 			if(res>0)
-				JOptionPane.showMessageDialog(null, "Contraseña modificada");
+				JOptionPane.showMessageDialog(null, "Contraseï¿½a modificada");
 			else
 				JOptionPane.showMessageDialog(null, "Error al modificar");
 		}catch(SQLException e) {

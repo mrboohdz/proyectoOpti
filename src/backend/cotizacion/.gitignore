@@ -2,3 +2,6 @@
 /ListaCotizaciones.class
 /Persona.class
 /TipoPersona.class
+/Cliente.class
+/Cliente$tipoPersona.class
+/Clientes.class

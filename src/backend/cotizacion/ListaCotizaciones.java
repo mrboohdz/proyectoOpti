@@ -19,12 +19,14 @@ public class ListaCotizaciones {
 	//Base de datos
 	private ResultSet rs = null; 
 	private PreparedStatement ps = null;
-	private static baseDatos bd = new baseDatos();
-	private static final Connection con = bd.getConexion();
+	private baseDatos bd = null;
+	private Connection con = null;
 		
 	public ListaCotizaciones(){
 		cotizaciones = new ArrayList<Cotizacion>();
 		try {
+			bd = new baseDatos();
+			con = bd.getConexion();
 			//Se accede a la base de datos para crear la lista de clientes, que viene de aquellos
 			//que hicieron una cotizacion.
 			//La lista de articulos no se guarda, lamentablemente no se puede ver que se cotizo
@@ -36,10 +38,10 @@ public class ListaCotizaciones {
 				//Vamos creando una cotizacion con cada dato que se tiene, y vamos a ir agregando esta a 
 				//la lista de clientes
 				Cotizacion cot = new Cotizacion();
-				Persona per = new Persona();
+				Cliente per = new Cliente();
 				
 				cot.setIdCotizacion(rs.getInt("idcotizacion"));
-				cot.setTipoPersona(TipoPersona.valueOf(rs.getString("tipoPersona")));
+				//cot.setTipoPersona(TipoPersona.valueOf(rs.getString("tipoPersona")));
 				
 				per.setNombre(rs.getString("responsable"));
 				per.setDireccion(rs.getString("direccion"));
@@ -47,8 +49,8 @@ public class ListaCotizaciones {
 				per.setRfc(rs.getString("rfc"));
 				
 				cot.setResponsable(per);
-				cot.setEmpresa(rs.getString("empresa"));
-				cot.setRazonSocial(rs.getString("razonSocial"));
+				//cot.setEmpresa(rs.getString("empresa"));
+				//cot.setRazonSocial(rs.getString("razonSocial"));
 				
 				cotizaciones.add(cot);
 			}
@@ -65,24 +67,28 @@ public class ListaCotizaciones {
 		String SQL = "INSERT INTO cotizacion(tipoPersona, total, fechaEmision, fechaVencimiento, responsable,"
 				+ "empresa, direccion, telefono, rfc, razonSocial) VALUES (?,?,?,?,?,?,?,?,?,?)";
 		try {
+			bd = new baseDatos();
+			con = bd.getConexion();
 			//Despues vamos obteniendo los datos de la cotizacion enviada para irla metiendo en la base
 			ps = con.prepareStatement(SQL);
-			ps.setString(1, cot.tipoPersona(cot.getTipoPersona()));
+			//ps.setString(1, cot.tipoPersona(cot.getTipoPersona()));
 			ps.setFloat(2, cot.getTotal());
 			ps.setString(3, cot.FechaHoy());
 			ps.setString(4, cot.FechaVenc());
 			ps.setString(5, cot.getResponsable().getNombre());
-			ps.setString(6, cot.getEmpresa());
+			//ps.setString(6, cot.getEmpresa());
 			ps.setString(7, cot.getResponsable().getDireccion());
 			ps.setString(8, cot.getResponsable().getNoTelefono());
 			ps.setString(9, cot.getResponsable().getRfc());
-			ps.setString(10, cot.getRazonSocial());
+			//ps.setString(10, cot.getRazonSocial());
 			
 			//La condicional es para saber si la insercion de datos se hizo de forma correcta
-			//Si la actualizacion se llevo a cabo correctamente nos dará un 1
+			//Si la actualizacion se llevo a cabo correctamente nos darï¿½ un 1
 			int res = ps.executeUpdate();
 			if(res>0) {
 				try {
+					bd = new baseDatos();
+					con = bd.getConexion();
 					//Esto es para obtener el id y que el usuario pueda guardarlo
 					int id=0;
 					SQL="SELECT idcotizacion FROM cotizacion WHERE responsable = '"+cot.getResponsable().getNombre()+"'";

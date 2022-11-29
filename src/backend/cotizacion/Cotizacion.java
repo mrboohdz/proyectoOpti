@@ -9,13 +9,10 @@ import backend.catalogo.Articulo;
 public class Cotizacion {
 	
 	private int idCotizacion;
-	private TipoPersona tipoPersona;
 	private float total;
 	private String fechaEmision;
 	private String fechaVencimiento;
-	private Persona responsable;
-	private String empresa;
-	private String razonSocial;
+	private Cliente responsable;
 	private Articulo art;
 	private ArrayList<Articulo> listaArticulos = new ArrayList<Articulo>();
 	
@@ -23,12 +20,7 @@ public class Cotizacion {
 		
 	}
 	
-	
-	//Para usar en la base de datos como String
-	public String tipoPersona (TipoPersona persona) {
-		return persona.name();
-	}
-	
+		
 	//Se usa para agregar la cantidad al articulo que nos mandan, para agregarlo totalmente a la lista
 	public void NuevoArticulo(Articulo art, int cantidad) {
 		art.setCantidad(cantidad);
@@ -51,12 +43,6 @@ public class Cotizacion {
 		return fechaVencimiento;
 	}
 
-	public TipoPersona getTipoPersona() {
-		return tipoPersona;
-	}
-	public void setTipoPersona(TipoPersona tipoPersona) {
-		this.tipoPersona = tipoPersona;
-	}
 	public float getTotal() {
 		return total;
 	}
@@ -64,17 +50,11 @@ public class Cotizacion {
 		this.total = total;
 	}
 	
-	public Persona getResponsable() {
+	public Cliente getResponsable() {
 		return responsable;
 	}
-	public void setResponsable(Persona responsable) {
+	public void setResponsable(Cliente responsable) {
 		this.responsable = responsable;
-	}
-	public String getEmpresa() {
-		return empresa;
-	}
-	public void setEmpresa(String empresa) {
-		this.empresa = empresa;
 	}
 	public ArrayList<Articulo> getListaArticulos() {
 		return listaArticulos;
@@ -109,14 +89,6 @@ public class Cotizacion {
 
 	public void setFechaVencimiento(String fechaVencimiento) {
 		this.fechaVencimiento = fechaVencimiento;
-	}
-
-	public String getRazonSocial() {
-		return razonSocial;
-	}
-
-	public void setRazonSocial(String razonSocial) {
-		this.razonSocial = razonSocial;
 	}
 
 
