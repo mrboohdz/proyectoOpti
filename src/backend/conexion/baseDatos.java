@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class baseDatos {
 	//Nuestra base de datos tiene estos datos para acceder.
 	private final String BASE = "9WGR2E3VXb"; 
-	private final String URL = "jdbc:mysql://remotemysql.com/" + BASE;
+	private final String URL = "jdbc:mysql://remotemysql.com/" + BASE+"?autoReconnect=true";
 	private final String USERNAME = "9WGR2E3VXb";
  	private final String PASSWORD= "CZrc1tBbiF";
 	
@@ -20,7 +20,7 @@ public class baseDatos {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(this.URL, this.USERNAME, this.PASSWORD);
-			//System.out.println("Conexión Exitosa");
+			//System.out.println("Conexiï¿½n Exitosa");
 		}
 		catch(SQLException|ClassNotFoundException e) {
 			System.out.println(e);
