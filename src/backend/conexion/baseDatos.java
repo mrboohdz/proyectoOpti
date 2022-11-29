@@ -1,14 +1,16 @@
 package backend.conexion;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 
 public class baseDatos {
 	//Nuestra base de datos tiene estos datos para acceder.
-	private final String BASE = "poocatalogo"; 
-	private final String URL = "jdbc:mysql://localhost:3306/" + BASE+"?useSSL=false";
-	private final String USERNAME = "root";
- 	private final String PASSWORD= "Nmhm0926";
+	private final String BASE = "9WGR2E3VXb"; 
+	private final String URL = "jdbc:mysql://remotemysql.com/" + BASE;
+	private final String USERNAME = "9WGR2E3VXb";
+ 	private final String PASSWORD= "CZrc1tBbiF";
 	
 	//Vamos a crear un metodo para ingresar a ella y no hacer esto
 	//Cada clase en la que usamos la base de datos
@@ -16,9 +18,9 @@ public class baseDatos {
 		Connection con = null;
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(this.URL, this.USERNAME, this.PASSWORD);
-			//System.out.println("Conexión Exitosa");
+			System.out.println("Conexiï¿½n Exitosa");
 		}
 		catch(SQLException|ClassNotFoundException e) {
 			System.out.println(e);
@@ -26,5 +28,10 @@ public class baseDatos {
 		return con;
 	}
 	
-
+	public static void main(String[] args) {
+		baseDatos bd = new baseDatos();
+		final Connection con = bd.getConexion();
+	}
 }
+
+
