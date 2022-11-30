@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import backend.conexion.baseDatos;
+import backend.proveedores.Proveedor;
 
 public class Catalogo  {
 	private ResultSet rs = null; 
@@ -21,7 +22,7 @@ public class Catalogo  {
 			bd = new baseDatos();
 			con = bd.getConexion();
 			//Accedemos a la base de datos para crear la lista de art�culos
-			articulos = new ArrayList<Articulo>();  
+			articulos = new ArrayList<Articulo>();
 			
 			//Agregar esta consulta para mostrar en la tabla
 			//SELECT articulo.id, articulo.nombre, proveedores.nombre, precio, stock FROM articulo LEFT JOIN proveedores ON articulo.idProveedor = proveedores.id 

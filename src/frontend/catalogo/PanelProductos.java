@@ -467,7 +467,7 @@ public class PanelProductos extends JPanel {
 			jtProductos.setModel(modelo);
 			
 			for(Articulo temp :art) {
-				Object[] fil = new Object[4];
+				Object[] fil = new Object[5];
 						fil[0]=temp.getId();
 						fil[1]=temp.getNombre();
 						fil[2]=temp.getProveedor();

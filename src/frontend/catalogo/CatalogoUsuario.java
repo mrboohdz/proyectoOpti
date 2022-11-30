@@ -5,10 +5,9 @@ import javax.swing.*;
 
 import backend.catalogo.Articulo;
 import backend.catalogo.Catalogo;
+import backend.proveedores.ListaProveedores;
+import backend.proveedores.Proveedor;
 
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -32,13 +31,15 @@ public class CatalogoUsuario extends JFrame {
 	private JTextField txtInfoID;
 	private JTextField txtInfoPrecio;
 	private JTextField txtInfoStock;
+	private JComboBox<String> cbInfoProv;
 	
 	private Catalogo cat;
 		
+	@SuppressWarnings("unchecked")
 	public CatalogoUsuario() {
-		setTitle("CATÁLOGO DE PRODUCTOS");
+		setTitle("CATï¿½LOGO DE PRODUCTOS");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(864,458);
+		setSize(864,479);
 		setLocationRelativeTo(null); 
 		setResizable(false);
 		getContentPane().setLayout(null); 
@@ -46,6 +47,14 @@ public class CatalogoUsuario extends JFrame {
 		//Ingresamos el panel de productos que usamos tambien en la interfaz de vista para el cliente
 		panelProductos = new PanelProductos(this);
 		cat = new Catalogo();
+		
+		JLabel lblInfoProveedor = new JLabel("Prov:");
+		lblInfoProveedor.setBounds(512, 102, 58, 14);
+		getContentPane().add(lblInfoProveedor);
+		
+		cbInfoProv = new JComboBox<String>();
+		cbInfoProv.setBounds(578, 96, 133, 22);
+		getContentPane().add(cbInfoProv);
 		
 		//Creacion de etiquetas, cajas de texto y botones
 		lblTitulo = new JLabel("DATOS DEL PRODUCTO");
@@ -71,19 +80,19 @@ public class CatalogoUsuario extends JFrame {
 		lblTitulo.setBounds(512, 11, 322, 30);
 		lblInfoNombre.setBounds(512, 52, 58, 14);
 		lblInfoID.setBounds(512, 77, 46, 14);
-		lblInfoPrecio.setBounds(512, 102, 46, 14);
-		lblInfoStock.setBounds(512, 127, 46, 14);
-		txtInfoNombre.setBounds(568, 49, 266, 20);
+		lblInfoPrecio.setBounds(512, 126, 46, 14);
+		lblInfoStock.setBounds(512, 151, 46, 14);
+		txtInfoNombre.setBounds(578, 49, 256, 20);
 		txtInfoID.setEditable(false);
-		txtInfoID.setBounds(568, 74, 133, 20);
-		txtInfoPrecio.setBounds(568, 99, 133, 20);
-		txtInfoStock.setBounds(568, 124, 133, 20);
-		btnModificar.setBounds(512, 169, 89, 23);
-		btnEliminar.setBounds(745, 169, 89, 23);
+		txtInfoID.setBounds(578, 71, 133, 20);
+		txtInfoPrecio.setBounds(578, 123, 133, 20);
+		txtInfoStock.setBounds(578, 148, 133, 20);
+		btnModificar.setBounds(512, 198, 89, 23);
+		btnEliminar.setBounds(745, 198, 89, 23);
 		btnModificar.setToolTipText("<html>Selecciona algun articulo de la tabla y hazle modificaciones, \r\n<br>al terminar presiona aqui</html>");
-		btnAgregar.setBounds(633, 169, 89, 23);
+		btnAgregar.setBounds(633, 198, 89, 23);
 		btnAgregar.setToolTipText("<html>Puedes crear un nuevo art\u00EDculo desde cero o tomar otro como base, <br>al finalizar de llenar los datos, presiona aqui</html>");
-		btnLimpiar.setBounds(633, 203, 89, 23);
+		btnLimpiar.setBounds(633, 232, 89, 23);
 	
 		/********************************ACCIONES DE BOTONES******************************************/
 		
@@ -96,16 +105,17 @@ public class CatalogoUsuario extends JFrame {
 				String nombre = txtInfoNombre.getText();
 				String precio = txtInfoPrecio.getText();
 				String stock = txtInfoStock.getText();
+				String proveedor = (String) cbInfoProv.getSelectedItem();
 				
 				if("".equals(nombre) || "".equals(precio) || "".equals(stock))
-					JOptionPane.showMessageDialog(null, "Campo vacío");
+					JOptionPane.showMessageDialog(null, "Campo vacï¿½o");
 				else {
 					Articulo art = new Articulo();
 					art.setNombre(nombre);
 					art.setPrecio(Float.parseFloat(precio));
 					art.setStock(Integer.parseInt(stock));
-					
-					int input = JOptionPane.showConfirmDialog(null, "¿Desea agregar "+art.getNombre()+"?");
+					art.setProveedor(proveedor);
+					int input = JOptionPane.showConfirmDialog(null, "ï¿½Desea agregar "+art.getNombre()+"?");
 					if(input==0)
 						cat.AgregarArticulo(art);
 					
@@ -127,7 +137,7 @@ public class CatalogoUsuario extends JFrame {
 				if("".equals(id))
 					JOptionPane.showMessageDialog(null, "Selecciona un articulo");
 				else {
-					int input = JOptionPane.showConfirmDialog(null, "¿Esta seguro de elimiar el articulo?");
+					int input = JOptionPane.showConfirmDialog(null, "ï¿½Esta seguro de elimiar el articulo?");
 					if (input==0)
 						cat.EliminarArticulo(id);
 					
@@ -152,6 +162,7 @@ public class CatalogoUsuario extends JFrame {
 					Articulo temp = new Articulo();
 					temp.setId(Integer.parseInt(id));
 					temp.setNombre(txtInfoNombre.getText());
+					temp.setProveedor((String) cbInfoProv.getSelectedItem());
 					temp.setPrecio(Float.parseFloat(txtInfoPrecio.getText()));
 					temp.setStock(Integer.parseInt(txtInfoStock.getText()));
 					cat.ModificarArticulo(temp);
@@ -190,11 +201,23 @@ public class CatalogoUsuario extends JFrame {
 		getContentPane().add(btnAgregar);
 		getContentPane().add(btnLimpiar);
 		
+		
+		
+	}
+	
+	public void LlenarProveedores() {
+		cbInfoProv.removeAllItems();
+		ListaProveedores lp = new ListaProveedores();
+		for (Proveedor temp: lp.getProveedores()) {
+			cbInfoProv.addItem(temp.getNombre());
+		}
 	}
 	
 	public void LlenarTabla(Articulo art) {
 		txtInfoID.setText(String.valueOf(art.getId()));
 		txtInfoNombre.setText(art.getNombre());
+		LlenarProveedores();
+		cbInfoProv.setSelectedItem(art.getProveedor());
 		txtInfoPrecio.setText(String.valueOf(art.getPrecio()));
 		txtInfoStock.setText(String.valueOf(art.getStock()));
 	}
