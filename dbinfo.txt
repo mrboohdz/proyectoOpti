@@ -1,5 +1,6 @@
 Created!
 You have successfully created a new database. The details are below.
+https://remotemysql.com/phpmyadmin/
 
 Username: 9WGR2E3VXb
 
