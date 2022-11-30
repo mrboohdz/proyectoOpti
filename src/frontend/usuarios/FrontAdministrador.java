@@ -74,6 +74,8 @@ public class FrontAdministrador extends JFrame {
 		//BOTON PROVEDORES
 		btnProvedores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Proveedores proveedores = new Proveedores();
+				proveedores.setVisible(true);
 			}
 		});
 		
