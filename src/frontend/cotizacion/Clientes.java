@@ -16,7 +16,8 @@ import javax.swing.table.DefaultTableModel;
 
 import backend.cotizacion.Cotizacion;
 import backend.cotizacion.ListaCotizaciones;
-import backend.cotizacion.Cliente;
+import backend.cotizacion.*;
+
 
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -28,7 +29,7 @@ public class Clientes extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	
-	private ListaCotizaciones listaCotizaciones;
+	private Clientes listaClientes;
 	private DefaultTableCellRenderer center = new DefaultTableCellRenderer();
 	private JScrollPane scroll;
 	private JTable table;
@@ -58,11 +59,11 @@ public class Clientes extends JFrame {
 		setLocationRelativeTo(null);
 		contentPane.setLayout(null);
 		
-		listaCotizaciones = new ListaCotizaciones();
+		listaClientes = new Clientes();
 		
 		table = new JTable();
 		scroll = new JScrollPane(table);
-		CrearTabla(listaCotizaciones.getCotizaciones());
+		CrearTabla(listaClientes.getClientes());
 		lblResponsable = new JLabel("Responsable:");
 		lblPersona = new JLabel("Persona:");
 		lblRfc = new JLabel("RFC:");
@@ -136,8 +137,8 @@ public class Clientes extends JFrame {
 		
 		btnRecargar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				listaCotizaciones = new ListaCotizaciones();
-				CrearTabla(listaCotizaciones.getCotizaciones());
+				listaClientes = new Clientes();
+				CrearTabla(listaClientes.getClientes());
 			}
 		});
 		
