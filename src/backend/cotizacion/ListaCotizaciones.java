@@ -31,7 +31,7 @@ public class ListaCotizaciones {
 			//que hicieron una cotizacion.
 			//La lista de articulos no se guarda, lamentablemente no se puede ver que se cotizo
 			//SELECT idcotizacion, responsable, cliente.tipoPersona, cliente.telefono, cliente.direccion FROM cotizacion LEFT JOIN cliente ON responsable = cliente.nombre 
-			String SQL = "SELECT idcotizacion, cotizacion.responsable, cliente.tipoPersona, cliente.telefono, cliente.direccion, cliente.razonSocial, cliente.rfc FROM cotizacion LEFT JOIN cliente ON responsable = cliente.nombre ";
+			String SQL = "SELECT idcotizacion, cliente.nombre, cliente.tipoPersona, cliente.telefono, cliente.direccion, cliente.razonSocial, cliente.rfc FROM cotizacion LEFT JOIN cliente ON responsable = cliente.nombre ";
 			ps = con.prepareStatement(SQL);
 			rs = ps.executeQuery();
 			

@@ -33,7 +33,7 @@ public class ListaClientes {
 				//la lista de clientes
 				Cliente per = new Cliente();
 				
-				per.setNombre(rs.getString("responsable"));
+				per.setNombre(rs.getString("nombre"));
 				per.setDireccion(rs.getString("direccion"));
 				per.setNoTelefono(rs.getString("telefono"));
 				per.setRfc(rs.getString("rfc"));
