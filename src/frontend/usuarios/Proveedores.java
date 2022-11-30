@@ -156,16 +156,11 @@ public class Proveedores extends JFrame {
 				int fila = table.getSelectedRow();
 				
 				txtID.setText(table.getValueAt(fila, 0).toString());
-				txtDireccion.setText(table.getValueAt(fila, 1).toString());
-				txtNombre.setText(table.getValueAt(fila, 2).toString());		
+				txtNombre.setText(table.getValueAt(fila, 1).toString());
+				txtDireccion.setText(table.getValueAt(fila, 2).toString());
+				txtTelefono.setText(table.getValueAt(fila, 3).toString());	
+				txtGiro.setText(table.getValueAt(fila, 4).toString());
 				
-				String priv = table.getValueAt(fila, 3).toString();
-				
-				//int index =0;
-				//if("USUARIO".equals(priv))
-					//index = 1;
-				
-				//cbPrivilegio.setSelectedIndex(index);
 				btnEliminar.setEnabled(true);
 				btnModificarTelefono.setEnabled(true);
 				btnModificarNombre.setEnabled(true);
@@ -418,8 +413,10 @@ public class Proveedores extends JFrame {
 			}		
 			
 			table.getColumnModel().getColumn(0).setPreferredWidth(10);
-			table.getColumnModel().getColumn(1).setPreferredWidth(20);
+			table.getColumnModel().getColumn(1).setPreferredWidth(100);
 			table.getColumnModel().getColumn(2).setPreferredWidth(100);
+			table.getColumnModel().getColumn(3).setPreferredWidth(100);
+			table.getColumnModel().getColumn(4).setPreferredWidth(100);
 			center.setHorizontalAlignment(JLabel.CENTER);
 			table.getColumnModel().getColumn(0).setCellRenderer(center);
 	}

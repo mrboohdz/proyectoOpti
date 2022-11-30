@@ -35,7 +35,8 @@ public class ListaProveedores {
 				
 				temp.setId((rs.getInt("id")));
 				temp.setNombre(rs.getString("nombre"));
-				temp.setDireccion(rs.getString("telefono"));
+				temp.setTelefono(rs.getString("telefono"));
+				temp.setDireccion(rs.getString("direccion"));
 				temp.setGiro(rs.getString("giro"));
 				
 				
@@ -51,7 +52,7 @@ public class ListaProveedores {
 	
 
 	public void AgregarProveedor(Proveedor nvo) {
-		String SQL = "INSERT INTO proveedores(id, nombre, direccion,telefono, giro) VALUES(?,?,?,?)";
+		String SQL = "INSERT INTO proveedores(nombre, direccion,telefono, giro) VALUES(?,?,?,?)";
 		try {
 			//Tomamos cada uno de los componentes del usuario que nos mandaron para agregarlo a la base de datos
 			ps = con.prepareStatement(SQL);
@@ -75,7 +76,7 @@ public class ListaProveedores {
 	}
 	
 	public void ModificarDireccion(String cont, String id) {
-		String SQL = "UPDATE proveedores SET direccion =? WHERE idusuario ='"+id+"'";
+		String SQL = "UPDATE proveedores SET direccion =? WHERE id ='"+id+"'";
 		try {
 			ps = con.prepareStatement(SQL);
 			ps.setString(1, cont);
@@ -91,7 +92,7 @@ public class ListaProveedores {
 	}
 	
 	public void ModificarNombre(String nombre, String id) {
-		String SQL = "UPDATE proveedores SET nombre =? WHERE idusuario ='"+id+"'";
+		String SQL = "UPDATE proveedores SET nombre =? WHERE id ='"+id+"'";
 		try {
 			
 			ps = con.prepareStatement(SQL);
@@ -109,12 +110,12 @@ public class ListaProveedores {
 	
 	
 	  public void ModificarGiro(String giro, String id) { 
-		  String SQL ="UPDATE proveedores SET giro =? WHERE idusuario ='"+id+"'"; 
+		  String SQL ="UPDATE proveedores SET giro =? WHERE id ='"+id+"'"; 
 		  try { 
 				  ps = con.prepareStatement(SQL); ps.setString(1, giro);
 				  int res = ps.executeUpdate(); 
 				  if(res>0) 
-					  JOptionPane.showMessageDialog(null, "Privilegio Giro"); 
+					  JOptionPane.showMessageDialog(null, "Giro Modificado"); 
 				  else 
 					  JOptionPane.showMessageDialog(null,"Error al modificar"); 
 		  	}
@@ -125,7 +126,7 @@ public class ListaProveedores {
 	 
 	
 	public void ModificarTelefono(String tel, String id) {
-		String SQL = "UPDATE proveedores SET telefono =? WHERE idusuario = '"+id+"'";
+		String SQL = "UPDATE proveedores SET telefono =? WHERE id = '"+id+"'";
 		try {
 			ps = con.prepareStatement(SQL);
 			ps.setString(1, tel);
@@ -184,7 +185,7 @@ public class ListaProveedores {
 
 	
 	public void EliminarProveedor(String id) {
-		String SQL = "DELETE FROM proveedores WHERE idusuario = '"+id+"'";
+		String SQL = "DELETE FROM proveedores WHERE id = '"+id+"'";
 		try {
 			ps = con.prepareStatement(SQL);
 			
