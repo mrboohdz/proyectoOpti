@@ -63,22 +63,21 @@ public class ListaCotizaciones {
 	public void CrearCotizacion(Cotizacion cot) {
 		//Se prepara el String para guardar los datos
 		String SQL = "INSERT INTO cotizacion(tipoPersona, total, fechaEmision, fechaVencimiento, responsable,"
-				+ "empresa, direccion, telefono, rfc, razonSocial) VALUES (?,?,?,?,?,?,?,?,?,?)";
+				+ "direccion, telefono, rfc, razonSocial) VALUES (?,?,?,?,?,?,?,?,?)";
 		try {
 			bd = new baseDatos();
 			con = bd.getConexion();
 			//Despues vamos obteniendo los datos de la cotizacion enviada para irla metiendo en la base
 			ps = con.prepareStatement(SQL);
-			//ps.setString(1, cot.tipoPersona(cot.getTipoPersona()));
+			ps.setString(1, cot.getResponsable().getTipoPersona().toString());
 			ps.setFloat(2, cot.getTotal());
 			ps.setString(3, cot.FechaHoy());
 			ps.setString(4, cot.FechaVenc());
 			ps.setString(5, cot.getResponsable().getNombre());
-			//ps.setString(6, cot.getEmpresa());
-			ps.setString(7, cot.getResponsable().getDireccion());
-			ps.setString(8, cot.getResponsable().getNoTelefono());
-			ps.setString(9, cot.getResponsable().getRfc());
-			//ps.setString(10, cot.getRazonSocial());
+			ps.setString(6, cot.getResponsable().getDireccion());
+			ps.setString(7, cot.getResponsable().getNoTelefono());
+			ps.setString(8, cot.getResponsable().getRfc());
+			ps.setString(9, cot.getResponsable().getRazonSocial());
 			
 			//La condicional es para saber si la insercion de datos se hizo de forma correcta
 			//Si la actualizacion se llevo a cabo correctamente nos dar� un 1
