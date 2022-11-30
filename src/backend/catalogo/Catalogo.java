@@ -84,7 +84,9 @@ public class Catalogo  {
 		bd = new baseDatos();
 		con = bd.getConexion();
 		//Para agregar a la base de datos primero preparamos el String que se enviara
-		String SQL = "INSERT INTO articulo(nombre, precio, stock) VALUES (?,?,?)";
+		//INSERT INTO articulo(nombre, precio, stock, idProveedor) VALUES ('Overol', '250', '5', (SELECT id FROM proveedores WHERE nombre = 'Sears'))
+		
+		String SQL = "INSERT INTO articulo(nombre, precio, stock, idProveedor) VALUES (?,?,?, (SELECT id FROM proveedores WHERE nombre = ?))";
 		try {
 			ps = con.prepareStatement(SQL);
 			
@@ -92,6 +94,7 @@ public class Catalogo  {
 			ps.setString(1, art.getNombre());
 			ps.setFloat(2, art.getPrecio());
 			ps.setInt(3, art.getStock());
+			ps.setString(4, art.getProveedor());
 			
 			//Al ejecutar la busqueda, nos regresara un entero para confirmar que se realizo
 			//correctamente, lo usaremos para confirmar con el usuario en la condicional
@@ -131,14 +134,16 @@ public class Catalogo  {
 		bd = new baseDatos();
 		con = bd.getConexion();
 		//Se prepara el String para la base de datos sin los valores
-		String SQL = "UPDATE articulo SET nombre=?,precio=?,stock=? WHERE id=?";
+		//UPDATE articulo SET nombre='Overol',precio='250',stock='10', idProveedor=(SELECT id FROM proveedores WHERE nombre = 'La Paca Suprema') WHERE id=50 
+		String SQL = "UPDATE articulo SET nombre=?,precio=?,stock=?, idProveedor=(SELECT id FROM proveedores WHERE nombre = ?) WHERE id=?";
 		try {
 			ps = con.prepareStatement(SQL);
 			//Se agregan los valores al string para la base de datos
 			ps.setString(1, art.getNombre());
 			ps.setFloat(2, art.getPrecio());
 			ps.setInt(3, art.getStock());
-			ps.setInt(4, art.getId());
+			ps.setString(4, art.getProveedor());
+			ps.setInt(5, art.getId());
 			
 			//Si todo sale bien, nos regresa un entero, se usar� para 
 			//confirmar al usuario que fue eliminado

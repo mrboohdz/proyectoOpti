@@ -201,7 +201,7 @@ public class CatalogoUsuario extends JFrame {
 		getContentPane().add(btnAgregar);
 		getContentPane().add(btnLimpiar);
 		
-		
+		LlenarProveedores();
 		
 	}
 	
@@ -227,7 +227,7 @@ public class CatalogoUsuario extends JFrame {
 		txtInfoNombre.setText("");
 		txtInfoPrecio.setText("");
 		txtInfoStock.setText("");
-		
+		LlenarProveedores();
 		btnModificar.setEnabled(false);
 		btnEliminar.setEnabled(false);
 	}
