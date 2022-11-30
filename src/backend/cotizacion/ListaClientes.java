@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import backend.conexion.baseDatos;
 import javax.swing.JOptionPane;
 
-public class Clientes {
+public class ListaClientes {
 	
 	private ArrayList<Cliente> clientes;
 	
@@ -18,7 +18,7 @@ public class Clientes {
 	private baseDatos bd = null;
 	private Connection con = null;
 	
-	public Clientes() {
+	public ListaClientes() {
 		clientes = new ArrayList<Cliente>();
 		try {
 			bd = new baseDatos();

@@ -30,7 +30,8 @@ public class ListaCotizaciones {
 			//Se accede a la base de datos para crear la lista de clientes, que viene de aquellos
 			//que hicieron una cotizacion.
 			//La lista de articulos no se guarda, lamentablemente no se puede ver que se cotizo
-			String SQL = "SELECT idcotizacion, tipoPersona, responsable, empresa, direccion, telefono, rfc, razonSocial FROM cotizacion";
+			//SELECT idcotizacion, responsable, cliente.tipoPersona, cliente.telefono, cliente.direccion FROM cotizacion LEFT JOIN cliente ON responsable = cliente.nombre 
+			String SQL = "SELECT idcotizacion, cotizacion.responsable, cliente.tipoPersona, cliente.telefono, cliente.direccion, cliente.razonSocial, cliente.rfc FROM cotizacion LEFT JOIN cliente ON responsable = cliente.nombre ";
 			ps = con.prepareStatement(SQL);
 			rs = ps.executeQuery();
 			
@@ -41,16 +42,13 @@ public class ListaCotizaciones {
 				Cliente per = new Cliente();
 				
 				cot.setIdCotizacion(rs.getInt("idcotizacion"));
-				//cot.setTipoPersona(TipoPersona.valueOf(rs.getString("tipoPersona")));
-				
-				per.setNombre(rs.getString("responsable"));
+				per.setTipoPersona(TipoPersona.valueOf(rs.getString("tipoPersona")));
+				per.setNombre(rs.getString(2));
 				per.setDireccion(rs.getString("direccion"));
 				per.setNoTelefono(rs.getString("telefono"));
 				per.setRfc(rs.getString("rfc"));
-				
+				per.setRazonSocial(rs.getString("razonSocial"));
 				cot.setResponsable(per);
-				//cot.setEmpresa(rs.getString("empresa"));
-				//cot.setRazonSocial(rs.getString("razonSocial"));
 				
 				cotizaciones.add(cot);
 			}

@@ -14,8 +14,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import backend.cotizacion.Cotizacion;
-import backend.cotizacion.ListaCotizaciones;
 import backend.cotizacion.*;
 
 
@@ -29,7 +27,7 @@ public class Clientes extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	
-	private Clientes listaClientes;
+	private ListaClientes listaClientes;
 	private DefaultTableCellRenderer center = new DefaultTableCellRenderer();
 	private JScrollPane scroll;
 	private JTable table;
@@ -48,6 +46,7 @@ public class Clientes extends JFrame {
 	private JTextField txtDireccion;
 	private JButton btnLimpiar;
 	private JButton btnRecargar;
+	private ListaCotizaciones listaCotizaciones;
 	
 	public Clientes() {
 		setTitle("CLIENTES");
@@ -59,11 +58,12 @@ public class Clientes extends JFrame {
 		setLocationRelativeTo(null);
 		contentPane.setLayout(null);
 		
-		listaClientes = new Clientes();
+		listaClientes = new ListaClientes();
+		listaCotizaciones = new ListaCotizaciones();
 		
 		table = new JTable();
 		scroll = new JScrollPane(table);
-		CrearTabla(listaClientes.getClientes());
+		CrearTabla(listaCotizaciones.getCotizaciones());
 		lblResponsable = new JLabel("Responsable:");
 		lblPersona = new JLabel("Persona:");
 		lblRfc = new JLabel("RFC:");
@@ -125,10 +125,10 @@ public class Clientes extends JFrame {
 				Cliente res = cot.getResponsable();
 				
 				txtResponsable.setText(res.getNombre());
-				//txtTipoPersona.setText(cot.getTipoPersona().toString());
+				txtTipoPersona.setText(res.getTipoPersona().toString());
 				txtRFC.setText(res.getRfc());
 				txtTelefono.setText(res.getNoTelefono());
-				//txtEmpresa.setText(cot.getEmpresa());
+				txtEmpresa.setText(res.getRazonSocial());
 				txtDireccion.setText(res.getDireccion());
 				
 				
@@ -137,8 +137,8 @@ public class Clientes extends JFrame {
 		
 		btnRecargar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				listaClientes = new Clientes();
-				CrearTabla(listaClientes.getClientes());
+				listaClientes = new ListaClientes();
+				CrearTabla(listaCotizaciones.getCotizaciones());
 			}
 		});
 		
@@ -170,7 +170,7 @@ public class Clientes extends JFrame {
 		
 	}
 	
-	public void CrearTabla(ArrayList<Cotizacion> coti) {
+	public void CrearTabla(ArrayList<Cotizacion> arrayList) {
 		
 		DefaultTableModel modelo =new  DefaultTableModel(
 				new Object[][] {
@@ -196,11 +196,11 @@ public class Clientes extends JFrame {
 				};
 			table.setModel(modelo);
 			
-			for(Cotizacion temp :coti) {
+			for(Cotizacion temp :arrayList) {
 				Object[] fil = new Object[5];
 						fil[0]=temp.getIdCotizacion();
 						fil[1]=temp.getResponsable().getNombre();
-						//fil[2]=temp.getTipoPersona().toString();
+						fil[2]=temp.getResponsable().getTipoPersona().toString();
 						fil[3]=temp.getResponsable().getNoTelefono();
 						fil[4]=temp.getResponsable().getDireccion();
 						
